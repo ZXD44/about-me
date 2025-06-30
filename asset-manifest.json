@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "/about-me/static/js/main.38b63d3c.js",
-    "index.html": "/about-me/index.html",
-    "main.38b63d3c.js.map": "/about-me/static/js/main.38b63d3c.js.map"
+    "main.js": "./static/js/main.38b63d3c.js",
+    "index.html": "./index.html",
+    "main.38b63d3c.js.map": "./static/js/main.38b63d3c.js.map"
   },
   "entrypoints": [
     "static/js/main.38b63d3c.js"
