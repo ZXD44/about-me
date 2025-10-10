@@ -1,0 +1,1 @@
+export { default as QRPopup } from './components/QRPopup';

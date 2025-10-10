@@ -1,75 +1,59 @@
-import React, { useState } from "react";
-import axios from "axios";
-// import { redeemvouchers } from '@prakrit_m/tmn-voucher'; // ใช้ใน backend เท่านั้น
+import React, { useState } from 'react';
+import { AnimatedText, useResponsive } from './shared';
+import { ProfileCard, animatedTexts } from './features/profile';
+import { SocialLinks } from './features/social';
+import { QRPopup } from './features/qr-donation';
+import { AIChatPopup } from './features/ai-chat';
+import './shared/styles/App.css';
 
-export default function App() {
-  const [donateType, setDonateType] = useState("promptpay"); // "promptpay" หรือ "angpao"
-  // PromptPay
-  const [qrCode, setQrCode] = useState("");
-  const [amount, setAmount] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  // Angpao
-  const [phone, setPhone] = useState("");
-  const [voucherUrl, setVoucherUrl] = useState("");
+function App() {
+  const [popup, setPopup] = useState(null);
+  const isMobile = useResponsive();
 
-  // PromptPay QR
-  const handleCreateQR = async () => {
-    setError("");
-    setQrCode("");
-    if (!amount || isNaN(amount) || Number(amount) <= 0) {
-      setError("กรุณากรอกจำนวนเงินให้ถูกต้อง");
-      return;
-    }
-    setLoading(true);
-    try {
-      const response = await axios.get(
-        `https://www.pp-qr.com/api/0968237098/${amount}`
-      );
-      if (response.status === 200) {
-        setQrCode(response.data.qrImage);
-      } else {
-        setError(response.data.error || "เกิดข้อผิดพลาด");
-      }
-    } catch (err) {
-      setError("เกิดข้อผิดพลาดในการเชื่อมต่อ API");
-    }
-    setLoading(false);
+  const handleSocialClick = (key) => {
+    if (key === 'ai') setPopup('chat');
+    else if (key === 'lan') setPopup('lan');
+    else setPopup(key);
   };
 
   return (
-    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-      <h2>Donate</h2>
-      <div style={{ marginBottom: 20 }}>
-        <button onClick={() => setDonateType("promptpay")} style={{ marginRight: 10, fontWeight: donateType === "promptpay" ? "bold" : "normal" }}>
-          PromptPay QR
-        </button>
+    <div className="profile-container">
+      {/* Background */}
+      <div className="background-overlay">
+        <div className="bg-banner" />
+      </div>
+      
+      {/* Main Content */}
+      <div className={`profile-card ${isMobile ? 'mobile' : ''}`}>
+        {/* Animated text above avatar */}
+        <AnimatedText texts={animatedTexts} />
+        
+        {/* Profile Card */}
+        <ProfileCard isMobile={isMobile} />
+        
+        {/* Social Links */}
+        <SocialLinks isMobile={isMobile} onSocialClick={handleSocialClick} />
+        
+        {/* Footer */}
+        <div className={`footer ${isMobile ? 'mobile' : ''}`}>
+          Thank You<br />© 2025 is Hdxw,Meo
+        </div>
       </div>
 
-      {donateType === "promptpay" && (
-        <div style={{ background: "#fff", padding: 24, borderRadius: 12, boxShadow: "0 2px 8px #0001", minWidth: 320 }}>
-          <h3>PromptPay QR</h3>
-          <input
-            type="number"
-            min="1"
-            step="1"
-            placeholder="จำนวนเงิน (บาท)"
-            value={amount}
-            onChange={e => setAmount(e.target.value)}
-            style={{ marginBottom: 10, width: "80%" }}
-          />
-          <br />
-          <button onClick={handleCreateQR} disabled={loading}>
-            {loading ? "กำลังสร้าง..." : "สร้าง QR"}
-          </button>
-          {error && <div style={{ color: "red", marginTop: 8 }}>{error}</div>}
-          {qrCode && (
-            <div style={{ marginTop: 16 }}>
-              <img src={qrCode} alt="QR PromptPay" style={{ width: 200, height: 200 }} />
-            </div>
-          )}
-        </div>
-      )}
+      {/* Popups */}
+      <QRPopup 
+        isOpen={popup === 'qr'} 
+        onClose={() => setPopup(null)} 
+        isMobile={isMobile} 
+      />
+      
+      <AIChatPopup 
+        isOpen={popup === 'chat'} 
+        onClose={() => setPopup(null)} 
+        isMobile={isMobile} 
+      />
     </div>
   );
 }
+
+export default App;

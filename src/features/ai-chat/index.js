@@ -1,0 +1,1 @@
+export { default as AIChatPopup } from './components/AIChatPopup';

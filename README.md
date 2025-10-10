@@ -1,176 +1,157 @@
-# 🌟 About Me - ZirconX Personal Profile Website
+# 🚀 เว็บโปรไฟล์ส่วนตัว - Personal Profile Website
 
-> Hi there! I'm so glad you stopped by. I created this website to share my work and connect with people who enjoy what I do. If you'd like to support me, you can make a donation or follow my latest updates right here. Every bit of support means a lot and helps me keep creating more. Thank you so much for your interest and for being part of this journey! 💝
+[![React](https://img.shields.io/badge/React-18.2.0-blue.svg)](https://reactjs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-เว็บไซต์โปรไฟล์ส่วนตัวที่มีฟีเจอร์ครบครันและทันสมัย พร้อมระบบ Donation, AI Chat, คู่มือ LAN และ Mini Game
+> 🌟 เว็บไซต์โปรไฟล์ส่วนตัวที่สร้างด้วย React พร้อมฟีเจอร์ AI Chat, QR Donation และประสิทธิภาพที่เหนือกว่า
 
 ## ✨ ฟีเจอร์หลัก
 
-### 🎨 หน้าหลัก (Profile Card)
-- แสดงข้อมูลส่วนตัวแบบ Interactive
-- รองรับทั้ง Desktop และ Mobile
-- ดีไซน์ Glass Morphism สวยงาม
-- Animation และ Transition ที่ลื่นไหล
+- 🤖 **AI Chat Assistant** - เชื่อมต่อกับ Google Gemini 2.0 Flash
+- 💰 **QR Donation System** - สร้าง QR Code สำหรับการบริจาค
+- 👤 **Profile Management** - แสดงข้อมูลส่วนตัวและ social links
+- 📱 **Responsive Design** - ทำงานได้ดีบนทุกอุปกรณ์
+- ⚡ **Optimized Performance** - เว็บไซต์ลื่นไหลและรวดเร็ว
 
-### 💰 ระบบ Donation
-- **PromptPay QR Code**: สร้าง QR Code สำหรับโอนเงินผ่านพร้อมเพย์
-- **TrueMoney Wallet**: รองรับการโอนผ่าน TrueMoney (เฉพาะมือถือ)
-- ระบบแจ้งเตือนเมื่อใช้งานบนอุปกรณ์ที่ไม่รองรับ
+## 🚀 การติดตั้ง
 
-### 🤖 AI Chatbot
-- ใช้ DeepSeek AI API สำหรับการสนทนา
-- รองรับภาษาไทยและอังกฤษ
-- UI แบบ Chat Interface ที่ใช้งานง่าย
-- Auto-scroll และ Loading indicator
+### Prerequisites
+- Node.js 18+ 
+- npm หรือ yarn
 
-### 📚 คู่มือการเข้าหัว LAN สาย CAT6 (ปรับปรุงใหม่)
-- คู่มือแบบ Interactive Tutorial ในเว็บไซต์
-- ระบบ Step-by-Step พร้อม Progress Tracking
-- Mini-game จัดเรียงสายสีตามมาตรฐาน TIA/EIA-568B
-- Timer และระบบติดตามความคืบหน้า
-- UI/UX ที่ใช้งานง่ายและสวยงาม
+### ขั้นตอนการติดตั้ง
 
-### 🎮 Mini Game - Click Target
-- เกมคลิกเป้าหมายแบบ Real-time
-- ระบบคะแนนและเลเวล
-- เป้าหมายที่มีขนาดและสีต่างกัน
-- เอฟเฟกต์พิเศษเมื่อคลิกโดน
-- สถิติความแม่นยำ
-
-## 🚀 คำสั่งสำหรับการใช้งาน
-
-### 1. เปิดเว็บสำหรับพัฒนา (Development)
 ```bash
+# Clone repository
+git clone https://github.com/yourusername/profile-website.git
+cd profile-website
+
+# ติดตั้ง dependencies
+npm install
+
+# เริ่มต้น development server
 npm start
 ```
-เปิดเว็บบน http://localhost:3000 สำหรับการพัฒนาและทดสอบ
 
-### 2. สร้างไฟล์ Production
-```bash
-npm run build
+### Environment Variables
+
+สร้างไฟล์ `.env` ในโฟลเดอร์หลัก:
+
+```env
+REACT_APP_GEMINI_API_KEY=your_gemini_api_key_here
 ```
-สร้างไฟล์ที่พร้อมใช้งานจริงในโฟลเดอร์ `build`
 
-### 3. Deploy ขึ้น GitHub Pages
+## 🔧 การใช้งาน
+
 ```bash
+# Development Mode
+npm start
+
+# Production Build
+npm run build
+
+# Deploy to GitHub Pages
 npm run deploy
 ```
-อัปโหลดเว็บไซต์ขึ้น GitHub Pages ที่ https://zxd44.github.io/about-me
 
-## 🛠️ เทคโนโลยีที่ใช้
+## 🏗️ โครงสร้างโปรเจค
 
-- **Frontend**: React 19.1.0
-- **Styling**: Inline Styles + CSS-in-JS
-- **API Integration**: 
-  - PromptPay QR API
-  - DeepSeek AI API
-  - TrueMoney API
-- **Fonts**: Google Fonts (Kanit, Prompt, Noto Sans Thai)
-- **Icons**: Simple Icons, Flaticon
-- **Deployment**: GitHub Pages
+```
+src/
+├── features/                 # Feature-based modules
+│   ├── ai-chat/            # AI Chat functionality
+│   ├── profile/            # Profile management
+│   ├── qr-donation/        # QR donation system
+│   └── social/             # Social media integration
+├── shared/                  # Shared components & utilities
+│   ├── components/         # Reusable components
+│   ├── config/             # Configuration files
+│   ├── hooks/              # Custom React hooks
+│   ├── styles/             # Global styles
+│   └── assets/             # Images & static files
+├── App.js                  # Main application component
+└── index.js                # Application entry point
+```
 
-## 📱 การรองรับอุปกรณ์
+## ⚙️ การตั้งค่า
 
-- ✅ Desktop (Windows, macOS, Linux)
-- ✅ Mobile (iOS, Android)
-- ✅ Tablet
-- ✅ Responsive Design
-
-## 🎯 การใช้งานฟีเจอร์
-
-### Donation System
-1. คลิกปุ่ม "Donate"
-2. เลือกระหว่าง PromptPay หรือ TrueMoney
-3. กรอกจำนวนเงิน (สำหรับ PromptPay)
-4. สแกน QR Code หรือคลิกลิงก์
-
-### AI Chat
-1. คลิกปุ่ม "AI Chat"
-2. พิมพ์ข้อความในช่องแชท
-3. กด Enter หรือคลิก "ส่ง"
-4. รอ AI ตอบกลับ
-
-### LAN Guide
-1. คลิกปุ่ม "LAN Guide"
-2. เรียนรู้ผ่าน Interactive Tutorial
-3. ทำ Mini-game จัดเรียงสายสี
-4. ติดตามความคืบหน้าและเวลา
-
-### Mini Game
-1. คลิกปุ่ม "Mini Game"
-2. กด "เริ่มเกม"
-3. คลิกเป้าหมายที่ปรากฏขึ้น
-4. เก็บคะแนนให้ได้มากที่สุดภายใน 30 วินาที
-
-## 📄 ไฟล์สำคัญ
-
-- `src/index.js` - ไฟล์หลักของแอปพลิเคชัน (รวม LAN Guide Component)
-- `src/App.js` - Component สำรอง
-- `public/index.html` - HTML Template
-- `package.json` - การตั้งค่าโปรเจค
-
-## 🔧 การปรับแต่ง
-
-### การแก้ไขข้อมูลส่วนตัว
-สามารถแก้ไขข้อมูลส่วนตัวได้ที่ object `profile` ในไฟล์ `src/index.js`:
+### API Configuration
+แก้ไขไฟล์ `src/shared/config/api.js`:
 
 ```javascript
-const profile = {
-  name: "ชื่อของคุณ",
-  username: "@username",
-  avatar: "path/to/avatar.jpg",
-  socials: [
-    // ลิงก์โซเชียลมีเดียของคุณ
-  ],
+export const API_CONFIG = {
+  QR_API_URL: "https://www.pp-qr.com/api/your_number"
 };
 ```
 
-### การแก้ไข API Keys
-- **AI Chat**: แก้ไข `API_KEY` ในไฟล์ `src/index.js`
-- **PromptPay**: แก้ไขเบอร์โทรศัพท์ใน URL API
+### Profile Data
+แก้ไขไฟล์ `src/features/profile/data/profile.js`:
 
-### การปรับแต่ง Theme
-แก้ไข object `theme` ในไฟล์ `src/index.js` เพื่อเปลี่ยนสีและสไตล์
+```javascript
+export const profile = {
+  name: "Your Name",
+  username: "@yourusername",
+  avatar: avatarImage,
+  socials: [
+    { key: "github", label: "GitHub", url: "https://github.com/username" },
+    { key: "telegram", label: "Telegram", url: "https://t.me/username" }
+  ]
+};
+```
 
-## 🤝 การมีส่วนร่วม (Contributing)
+## 📱 Responsive Design
 
-1. Fork repository นี้
-2. สร้าง feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit การเปลี่ยนแปลง (`git commit -m 'Add some AmazingFeature'`)
-4. Push ไปยัง branch (`git push origin feature/AmazingFeature`)
-5. เปิด Pull Request
+- **Mobile First** approach
+- **Breakpoints**: 320px, 768px, 1024px, 1440px
+- **Touch-friendly** interfaces
+- **Optimized** for all screen sizes
 
-### Guidelines สำหรับ Contributors:
-- ใช้ภาษาไทยในคอมเมนต์และ documentation
-- ทดสอบให้แน่ใจว่าโค้ดทำงานได้ถูกต้อง
-- รักษา code style ให้สอดคล้องกับโปรเจค
+## ⚡ Performance Optimizations
 
-## 📞 ติดต่อ
+- **Reduced animations** สำหรับประสิทธิภาพที่ดีขึ้น
+- **Optimized CSS** ลด GPU usage
+- **Simplified effects** เพื่อความลื่นไหล
+- **Hardware acceleration** สำหรับ smooth transitions
 
-- GitHub: [ZXD44/about-me](https://github.com/ZXD44/about-me)
+## 🔒 ความปลอดภัย
+
+- ใช้ environment variables สำหรับ API keys
+- ไม่ commit API keys ลง Git
+- Input validation และ sanitization
+- HTTPS enforcement ใน production
+
+## 📦 การ Deploy
+
+### GitHub Pages
+```bash
+npm run deploy
+```
+
+### Netlify/Vercel
+1. Connect repository
+2. Build command: `npm run build`
+3. Publish directory: `build`
+
+## 🧪 Testing
+
+```bash
+npm test
+npm run test:coverage
+```
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 👨‍💻 ผู้พัฒนา
+
+**ZirconX** (@ZX1150)
+- GitHub: [ZXD44](https://github.com/ZXD44)
 - Telegram: [@ZirconXD](https://t.me/ZirconXD)
 - YouTube: [@zirconxd](https://www.youtube.com/@zirconxd)
 - TikTok: [@zirconxd](https://www.tiktok.com/@zirconxd)
 
-## 🌐 Live Demo
-
-เยี่ยมชมเว็บไซต์ได้ที่: **[https://zxd44.github.io/about-me](https://zxd44.github.io/about-me)**
-
-## 🤝 การสนับสนุน
-
-หากคุณชอบโปรเจคนี้ สามารถสนับสนุนได้หลายวิธี:
-
-- ⭐ ให้ Star ใน GitHub Repository
-- 🍴 Fork และพัฒนาต่อ
-- 💰 Donate ผ่านเว็บไซต์
-- 📢 แชร์ให้เพื่อนๆ
-
-## 📝 License
-
-โปรเจคนี้เป็น Open Source ภายใต้ MIT License - ดูรายละเอียดใน [LICENSE](LICENSE) file
-
 ---
 
-💝 **ขอบคุณที่ใช้งาน!** หากมีข้อเสนอแนะหรือพบปัญหา สามารถสร้าง Issue ใน GitHub หรือติดต่อมาได้เสมอ
-
-**Repository:** [ZXD44/about-me](https://github.com/ZXD44/about-me) 
+⭐ **Star this repository if you find it helpful!**
