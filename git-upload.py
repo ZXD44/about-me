@@ -9,7 +9,7 @@ from datetime import datetime
 # --- การตั้งค่า (Configuration) ---
 BRANCH = "main"
 REPO_NAME = "ZXD44/about-me"
-WEB_URL = "https://ZXD44.github.io/about-me"
+WEB_URL = "https://zirconx.my"
 
 # --- สีและสไตล์ (Colors & Styles) ---
 class Style:
