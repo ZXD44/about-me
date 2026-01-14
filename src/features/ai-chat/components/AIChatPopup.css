@@ -1,0 +1,321 @@
+/* AI Chat Popup Styles */
+.ai-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.ai-popup-content {
+    background: rgba(5, 5, 5, 0.98);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-radius: 28px;
+    padding: 32px;
+    width: 100%;
+    max-width: 650px;
+    height: 75vh;
+    position: relative;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--accent-primary);
+    animation: slideUp 0.4s ease-out;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.ai-popup-content.mobile {
+    padding: 20px;
+    max-width: 95vw;
+    height: 80vh;
+}
+
+.ai-popup-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #dc2626;
+    border-radius: 8px;
+    color: #dc2626;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    overflow: hidden;
+}
+
+.ai-popup-close::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #dc2626;
+    z-index: -1;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ai-popup-close:hover {
+    color: #fff;
+    transform: rotate(90deg);
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.6);
+}
+
+.ai-popup-close:hover::before {
+    transform: translateY(0);
+}
+
+
+
+.ai-popup-header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+}
+
+/* Title - Minimalist White */
+.ai-popup-title {
+    color: #fff;
+    font-weight: 700;
+    margin: 0;
+    font-size: 24px;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.mobile .ai-popup-title {
+    font-size: 20px;
+}
+
+.ai-chat-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 20px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.ai-message {
+    margin-bottom: 16px;
+    padding: 16px 20px;
+    border-radius: 18px;
+    max-width: 85%;
+    word-wrap: break-word;
+    animation: fadeInUp 0.3s ease-out;
+    position: relative;
+}
+
+.ai-message.user {
+    background: #ffffff;
+    color: #000;
+    margin-left: auto;
+    text-align: right;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+.ai-message.assistant {
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    margin-right: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.ai-typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    background: rgba(51, 65, 85, 0.5);
+    border-radius: 18px;
+    color: #94a3b8;
+    font-style: italic;
+    margin-bottom: 16px;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.ai-chat-form {
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+}
+
+.ai-chat-input {
+    flex: 1;
+    padding: 16px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    color: #fff;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+    box-sizing: border-box;
+    resize: none;
+    font-family: 'Exo 2', sans-serif;
+}
+
+.ai-chat-input:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.ai-chat-send {
+    width: 56px;
+    height: 56px;
+    background: #ffffff;
+    color: #000;
+    border: none;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+    flex-shrink: 0;
+}
+
+.ai-chat-send svg {
+    transition: transform 0.3s ease;
+}
+
+.ai-chat-send:not(:disabled):hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.4);
+    background: #fff;
+}
+
+.ai-chat-send:not(:disabled):hover svg {
+    transform: translate(2px, -2px);
+}
+
+.ai-chat-send:active {
+    transform: scale(0.95);
+}
+
+.loading-dots {
+    display: flex;
+    gap: 2px;
+    font-size: 24px;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.loading-dots span {
+    animation: voidDotFade 1.4s infinite;
+    opacity: 0;
+}
+
+.loading-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.loading-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes voidDotFade {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0);
+    }
+
+    40% {
+        transform: scale(1.0);
+    }
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background: var(--accent-primary);
+    border-radius: 50%;
+    animation: bounce 1.4s ease-in-out infinite both;
+}
