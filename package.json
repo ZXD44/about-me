@@ -3,7 +3,7 @@
   "version": "1.2.0",
   "description": "Personal profile website with AI Chat, Music Player, QR Donation and modern UI",
   "private": true,
-  "homepage": "./",
+  "homepage": "https://ZXD44.github.io/about-me",
   "keywords": [
     "react",
     "profile",
@@ -50,9 +50,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/profile-website.git"
+    "url": "https://github.com/ZXD44/about-me.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/profile-website/issues"
+    "url": "https://github.com/ZXD44/about-me/issues"
   }
 }
