@@ -22,13 +22,22 @@ const ProfileCard = ({ isMobile }) => {
   useEffect(() => {
     if (!profile.avatars || profile.avatars.length <= 1) return;
 
+    // Preload images for smoothness
+    profile.avatars.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+
     const interval = setInterval(() => {
       setIsFading(true);
       setTimeout(() => {
         setCurrentAvatarIndex((prev) => (prev + 1) % profile.avatars.length);
-        setIsFading(false);
-      }, 500);
-    }, 6000);
+        // Small delay before fading back in to ensure src is swapped
+        requestAnimationFrame(() => {
+          setIsFading(false);
+        });
+      }, 600); // Wait 600ms (slightly longer than CSS transition)
+    }, 5000); // Switch every 5s
 
     return () => clearInterval(interval);
   }, []);
