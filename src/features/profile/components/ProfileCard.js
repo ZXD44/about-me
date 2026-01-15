@@ -16,31 +16,62 @@ const ProfileCard = ({ isMobile }) => {
     });
   };
 
+  // Image Rotation Logic
   const [currentAvatarIndex, setCurrentAvatarIndex] = useState(0);
   const [isFading, setIsFading] = useState(false);
+  const [areImagesReady, setAreImagesReady] = useState(false);
 
+  // 1. Preload Images
   useEffect(() => {
     if (!profile.avatars || profile.avatars.length <= 1) return;
 
-    // Preload images for smoothness
-    profile.avatars.forEach((src) => {
-      const img = new Image();
-      img.src = src;
+    let isMounted = true;
+    const imagePromises = profile.avatars.map((src) => {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = src;
+        img.onload = () => resolve(src);
+        img.onerror = () => resolve(src); // Proceed even if error to avoid blocking
+      });
     });
 
+    Promise.all(imagePromises).then(() => {
+      if (isMounted) {
+        setAreImagesReady(true);
+        console.log("All profile images loaded.");
+      }
+    });
+
+    return () => { isMounted = false; };
+  }, []);
+
+  // 2. Start Rotation only after images are ready
+  useEffect(() => {
+    if (!areImagesReady || profile.avatars.length <= 1) return;
+
     const interval = setInterval(() => {
+      // Step 1: Start Fading Out
       setIsFading(true);
+
+      // Step 2: Change Image after fade out matches CSS transition (400ms defined in CSS)
+      // We use 600ms to be safe and ensure it's fully invisible
       setTimeout(() => {
-        setCurrentAvatarIndex((prev) => (prev + 1) % profile.avatars.length);
-        // Small delay before fading back in to ensure src is swapped
-        requestAnimationFrame(() => {
-          setIsFading(false);
+        setCurrentAvatarIndex((prev) => {
+          const nextIndex = (prev + 1) % profile.avatars.length;
+          return nextIndex;
         });
-      }, 600); // Wait 600ms (slightly longer than CSS transition)
-    }, 5000); // Switch every 5s
+
+        // Step 3: Fade In (short delay to allow DOM to update src)
+        setTimeout(() => {
+          setIsFading(false);
+        }, 100);
+
+      }, 600);
+
+    }, 5000); // Change every 5 seconds
 
     return () => clearInterval(interval);
-  }, []);
+  }, [areImagesReady]);
 
   return (
     <>
