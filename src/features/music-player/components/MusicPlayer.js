@@ -53,8 +53,8 @@ const MusicPlayer = ({ isMobile = false }) => {
           onReady: (e) => {
             if (isMounted) {
               playerRef.current = e.target;
-              // Adjust volume: Mobile 70%, Desktop 60%
-              const volume = isMobile ? 70 : 60;
+              // Adjust volume: Mobile 80%, Desktop 45%
+              const volume = isMobile ? 80 : 45;
               playerRef.current.setVolume(volume);
 
               // Check if we should auto-play

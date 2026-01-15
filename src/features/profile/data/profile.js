@@ -1,5 +1,5 @@
 import avatarMain from '../../../shared/assets/images/profile_main.jpg';
-import avatarAlt from '../../../shared/assets/images/profile_alt.png';
+import avatarAlt from '../../../shared/assets/images/profile_alt.jpg';
 
 export const profile = {
   name: "ZirconX",
