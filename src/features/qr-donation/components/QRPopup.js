@@ -141,7 +141,7 @@ function QRPopup({ isOpen, onClose, isMobile }) {
     borderRadius: '20px',
     border: '1px solid rgba(255, 255, 255, 0.05)',
     textAlign: 'center',
-    animation: 'fadeInUp 0.5s ease-out'
+    animation: 'fadeInUp 0.5s ease-out, qrPulse 3s infinite ease-in-out' /* Added Pulse Animation */
   };
 
   const qrImageStyle = {
@@ -297,6 +297,12 @@ function QRPopup({ isOpen, onClose, isMobile }) {
             @keyframes spin {
               0% { transform: rotate(0deg); }
               100% { transform: rotate(360deg); }
+            }
+
+            @keyframes qrPulse {
+              0% { transform: scale(1); box-shadow: 0 0 0 rgba(255, 255, 255, 0); border-color: rgba(255, 255, 255, 0.05); }
+              50% { transform: scale(1.02); box-shadow: 0 0 30px rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.3); }
+              100% { transform: scale(1); box-shadow: 0 0 0 rgba(255, 255, 255, 0); border-color: rgba(255, 255, 255, 0.05); }
             }
             
             /* Hide spin buttons */

@@ -9,9 +9,9 @@ function AIChatPopup({ isOpen, onClose, isMobile }) {
   const [aiLoading, setAiLoading] = useState(false);
   const aiChatEndRef = useRef(null);
 
-  // API Configuration - Powered by OpenRouter.ai
-  const API_KEY = "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";
-  const API_URL = "https://openrouter.ai/api/v1/chat/completions";
+  // API Configuration - Powered by Google Gemini
+  const API_KEY = "AIzaSyAdGW9_n0p5FP1VbhZ_TMlhHxRWs34b8yc";
+  const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite-preview-02-05:generateContent?key=${API_KEY}`;
 
   useEffect(() => {
     aiChatEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -27,39 +27,39 @@ function AIChatPopup({ isOpen, onClose, isMobile }) {
     setAiLoading(true);
 
     try {
+      // Prepare history for Gemini
+      // Map 'assistant' -> 'model', 'user' -> 'user'
+      const contents = aiChat.map(msg => ({
+        role: msg.role === 'assistant' ? 'model' : 'user',
+        parts: [{ text: msg.content }]
+      }));
+
+      // Add the new user message
+      contents.push({
+        role: "user",
+        parts: [{ text: userMsg.content }]
+      });
+
       const response = await fetch(API_URL, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${API_KEY}`,
-          'HTTP-Referer': 'https://github.com/ZXD44',
-          'X-Title': 'Void Intelligence',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          model: "meta-llama/llama-3.2-3b-instruct:free",
-          messages: [
-            {
-              role: "system",
-              content: "คุณคือ 'Void Intelligence' AI Assistant ที่มีความสุขุม ลึกลับ แต่ช่วยเหลือผู้ใช้ได้ดีเยี่ยม ตอบเป็นภาษาไทยเป็นหลัก ใช้ถ้อยคำที่ดูเท่ ทันสมัย และใช้อีโมจิโทนมืด/ลึกลับ เช่น 🌑, 🖤, 👁️, ✨ ให้เหมาะสมกับธีม 'Acheron Void'"
-            },
-            ...aiChat.map(msg => ({
-              role: msg.role,
-              content: msg.content
-            })),
-            { role: "user", content: aiInput }
-          ],
-          temperature: 0.7,
-          max_tokens: 1000
+          contents: contents,
+          systemInstruction: {
+            parts: [{ text: "คุณคือ 'Void Intelligence' AI Assistant ที่มีความสุขุม ลึกลับ แต่ช่วยเหลือผู้ใช้ได้ดีเยี่ยม ตอบเป็นภาษาไทยเป็นหลัก ใช้ถ้อยคำที่ดูเท่ ทันสมัย และใช้อีโมจิโทนมืด/ลึกลับ เช่น 🌑, 🖤, 👁️, ✨ ให้เหมาะสมกับธีม 'Acheron Void'" }]
+          }
         }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        const aiResponse = data.choices?.[0]?.message?.content || "ระบบไม่สามารถตอบกลับได้ในขณะนี้ 🌑";
+        const aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || "ระบบไม่สามารถตอบกลับได้ในขณะนี้ 🌑";
         setAiChat(prev => [...prev, { role: "assistant", content: aiResponse }]);
       } else {
-        console.error('OpenRouter API Error:', JSON.stringify(data, null, 2));
+        console.error('Gemini API Error:', JSON.stringify(data, null, 2));
         throw new Error(data.error?.message || 'API request failed');
       }
 
@@ -67,7 +67,7 @@ function AIChatPopup({ isOpen, onClose, isMobile }) {
       console.error('AI API Error:', err);
       setAiChat(prev => [...prev, {
         role: "assistant",
-        content: "ขออภัยครับ เกิดข้อผิดพลาดในการเชื่อมต่อ API 😔"
+        content: "ขออภัยครับ เกิดข้อผิดพลาดในการเชื่อมต่อจักรวาล (API Error) 😔"
       }]);
     }
     setAiLoading(false);

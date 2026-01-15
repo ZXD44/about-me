@@ -53,7 +53,10 @@ const MusicPlayer = ({ isMobile = false }) => {
           onReady: (e) => {
             if (isMounted) {
               playerRef.current = e.target;
-              playerRef.current.setVolume(API_CONFIG.DEFAULT_VOLUME || 30);
+              // Boost volume for Mobile (50), otherwise use default (usually 10-30)
+              const volume = isMobile ? 50 : (API_CONFIG.DEFAULT_VOLUME || 30);
+              playerRef.current.setVolume(volume);
+
               // Check if we should auto-play
               playerRef.current.playVideo();
               setIsLoading(false);

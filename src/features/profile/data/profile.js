@@ -18,6 +18,6 @@ export const profile = {
 export const animatedTexts = [
   { text: "Enter The Void", color: "#ffffff" },
   { text: "ความว่างเปล่าคืนนิรันดร์", color: "#ffffff" },
-  { text: "Create from Nothingness", color: "#ffffff" },
-  { text: "สร้างสรรค์จากความมืดมิด", color: "#ffffff" }
+  { text: "ผมว่าจะเลิกเบียวแล้ว", color: "#ffffffff" },
+  { text: "ขอบคุณที่เข้ามาชม", color: "#ffffff" }
 ];

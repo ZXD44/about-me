@@ -15,7 +15,7 @@ function AnimatedText({ texts = [], className = "" }) {
 
   return (
     <div className={`animated-text ${className}`}>
-      <span key={idx}>
+      <span key={idx} style={{ color: texts[idx]?.color || 'inherit' }}>
         {texts[idx]?.text || ''}
       </span>
     </div>

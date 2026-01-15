@@ -43,7 +43,9 @@ function App() {
 
         {/* Footer */}
         <div className={`footer ${isMobile ? 'mobile' : ''}`}>
-          Thank You<br />© 2025 is Hdxw,Meo
+          Thank You<br />
+          <span style={{ color: '#fff', fontWeight: 500, display: 'block', margin: '5px 0 2px' }}>Sahaphum Thabtawee</span>
+          <span style={{ opacity: 0.5, fontSize: '0.85rem' }}>© 2025 - 2026</span>
         </div>
       </div>
 
@@ -62,7 +64,7 @@ function App() {
 
       {/* Music Player */}
       <MusicPlayer isMobile={isMobile} />
-    </div>
+    </div >
   );
 }
 
